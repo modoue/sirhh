@@ -25,10 +25,10 @@
 <div class="navbar-scroll-container" [ngClass]="fuseConfig.layout.navbar.primaryBackground"
      fusePerfectScrollbar [fusePerfectScrollbarOptions]="{suppressScrollX: true}">
 
-    <div class="user" fxLayout="column" [ngClass]="fuseConfig.layout.navbar.secondaryBackground">
+    <div class="user" fxLayout="column" [ngClass]="fuseConfig.layout.navbar.secondaryBackground" *ngIf="keycloakService.kc.authenticated">
 
-        <div class="h3 username">Charlie Adams</div>
-        <div class="h5 email hint-text mt-8">adams.charlie@mail.com</div>
+        <div class="h3 username">{{keycloakService.kc.tokenParsed.name}}</div>
+        <div class="h5 email hint-text mt-8">{{keycloakService.kc.tokenParsed.email}}</div>
         <div class="avatar-container" [ngClass]="fuseConfig.layout.navbar.primaryBackground">
             <img class="avatar" src="assets/images/avatars/Velazquez.jpg">
         </div>

@@ -20,10 +20,15 @@ import { SampleModule } from 'app/main/sample/sample.module';
 import { KeycloakSecurityService } from './service/keycloak-security.service';
 import { EmploiService } from './entities/administration/emploi/service/emploi.service';
 import { KeycloakInterceptorSecurityService } from './service/keycloak-interceptor-security.service';
+import { UserService } from './service/user.service';
 export function kcfactory(kckeycloak:KeycloakSecurityService){
     return ()=>kckeycloak.init()
 }
 const appRoutes: Routes = [
+    {
+        path:'user',
+        loadChildren:()=>import("./user/user.module").then(m=>m.UserModule)
+    },
     {
         path      : '**',
         redirectTo: 'sample'
@@ -64,7 +69,7 @@ const appRoutes: Routes = [
         {provide:APP_INITIALIZER,deps:[KeycloakSecurityService],useFactory:kcfactory,multi:true},
         { provide:HTTP_INTERCEPTORS,useClass:KeycloakInterceptorSecurityService,multi:true},
      
-        EmploiService
+        UserService
         
         
     ],

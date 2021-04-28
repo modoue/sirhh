@@ -8,6 +8,7 @@ import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
 import { navigation } from 'app/navigation/navigation';
+import { KeycloakSecurityService } from 'app/service/keycloak-security.service';
 
 @Component({
     selector     : 'toolbar',
@@ -39,7 +40,8 @@ export class ToolbarComponent implements OnInit, OnDestroy
     constructor(
         private _fuseConfigService: FuseConfigService,
         private _fuseSidebarService: FuseSidebarService,
-        private _translateService: TranslateService
+        private _translateService: TranslateService,
+        public keycloakService: KeycloakSecurityService
     )
     {
         // Set the defaults
@@ -159,5 +161,11 @@ export class ToolbarComponent implements OnInit, OnDestroy
 
         // Use the selected language for translations
         this._translateService.use(lang.id);
+    }
+    onLogout(){
+        this.keycloakService.kc.logout()
+    }
+    onLogin(){
+        this.keycloakService.kc.login()
     }
 }

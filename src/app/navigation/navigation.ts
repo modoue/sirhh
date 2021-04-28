@@ -20,7 +20,15 @@ export const navigation: FuseNavigation[] = [
                     bg       : '#F44336',
                     fg       : '#FFFFFF'
                 }
-            }
+            },
+          
+            {
+                id   : 'user',
+                title: 'Users',
+                type : 'item',
+                icon : 'person',
+                url  : '/user/liste'
+            },
         ]
     }
 ];

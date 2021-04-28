@@ -17,8 +17,8 @@ export class KeycloakSecurityService {
        clientId:"front"
      })
      await this.kc.init({
-       onLoad:"login-required",
-    // onload:"chek-sso"
+    //onLoad:"login-required",
+     onload:"chek-sso"
       
 
      }),

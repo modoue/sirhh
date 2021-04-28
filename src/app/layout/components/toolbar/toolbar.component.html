@@ -26,15 +26,22 @@
         <div class="" fxFlex="0 1 auto" fxLayout="row" fxLayoutAlign="start center">
 
             <button mat-button [matMenuTriggerFor]="userMenu"
-                    class="user-button">
+                    class="user-button" *ngIf="keycloakService.kc.authenticated">
                 <div fxLayout="row" fxLayoutAlign="center center">
                     <img class="avatar mr-0 mr-sm-16" src="assets/images/avatars/Velazquez.jpg">
-                    <span class="username mr-12" fxHide fxShow.gt-sm>Charlie Adams</span>
+                    <span class="username mr-12" fxHide fxShow.gt-sm>{{keycloakService.kc.tokenParsed.name}}</span>
                     <mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon>
                 </div>
             </button>
-
-            <mat-menu #userMenu="matMenu" [overlapTrigger]="false">
+            <button mat-button 
+                    class="user-button" *ngIf="!keycloakService.kc.authenticated" (click)="onLogin()">
+                <div fxLayout="row" fxLayoutAlign="center center">
+               
+                    <span class="username mr-12" fxHide fxShow.gt-sm>Sign in</span>
+             
+                </div>
+            </button>
+            <mat-menu #userMenu="matMenu" [overlapTrigger]="false" >
 
                 <button mat-menu-item>
                     <mat-icon>account_circle</mat-icon>
@@ -46,7 +53,7 @@
                     <span>Inbox</span>
                 </button>
 
-                <button mat-menu-item class="">
+                <button mat-menu-item class="" (click)="onLogout()">
                     <mat-icon>exit_to_app</mat-icon>
                     <span>Logout</span>
                 </button>

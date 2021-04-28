@@ -1,0 +1,78 @@
+
+            <mat-table class="orders-table"
+            #table [dataSource]="dataSource"
+            matSort
+            [@animateStagger]="{value:'50'}"
+            fusePerfectScrollbar >
+
+     <!-- ID Column -->
+     <ng-container matColumnDef="id">
+         <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+         <mat-cell *matCellDef="let user">
+            <mat-icon>person</mat-icon>
+         </mat-cell>
+     </ng-container>
+
+     <!-- Reference Column -->
+     <ng-container matColumnDef="ref">
+         <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>ID</mat-header-cell>
+         <mat-cell *matCellDef="let user" fxHide fxShow.gt-sm>
+             <p class="text-truncate">modou</p>
+         </mat-cell>
+     </ng-container>
+     <!-- Reference Column -->
+     <ng-container matColumnDef="firstname">
+       <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>firstname</mat-header-cell>
+       <mat-cell *matCellDef="let user" fxHide fxShow.gt-sm>
+           <p class="text-truncate">{{user.firstName}}</p>
+       </mat-cell>
+   </ng-container>
+     <ng-container matColumnDef="lastname">
+         <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>lastname</mat-header-cell>
+         <mat-cell *matCellDef="let user" fxHide fxShow.gt-sm>
+            <p class="text-truncate">{{user.lastName}}</p>
+        </mat-cell>
+     </ng-container>
+     <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Mail</mat-header-cell>
+        <mat-cell *matCellDef="let user" fxHide fxShow.gt-sm>
+           <p class="text-truncate">{{user.email}}</p>
+       </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="username">
+      <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Username</mat-header-cell>
+      <mat-cell *matCellDef="let user" fxHide fxShow.gt-sm>
+         <p class="text-truncate">{{user.username}}</p>
+     </mat-cell>
+  </ng-container>  
+    <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Action</mat-header-cell>
+        <mat-cell *matCellDef="let order" fxHide fxShow.gt-sm>
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item  (click)=delete(order.id)>
+                  <mat-icon>delete</mat-icon>
+                  <span>Desactiver</span>
+                </button>
+                <button mat-menu-item (click)=editPpm(order)>
+                  <mat-icon>update</mat-icon>
+                  <span>Modifier</span>
+              </button>
+
+          
+              </mat-menu>
+        </mat-cell>
+    </ng-container>
+
+     <mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></mat-header-row>
+
+     <mat-row *matRowDef="let order; columns: displayedColumns;"
+              class="order"
+              matRipple
+        >
+     </mat-row>
+
+ </mat-table>
+

@@ -19,6 +19,7 @@ import { EmployeService } from './entities/administration/employe/service/employ
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ITEMS_PER_PAGE } from './config/pagination.constants';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from './service/user.service';
 
 @Component({
     selector   : 'app',
@@ -64,6 +65,7 @@ export class AppComponent implements OnInit, OnDestroy
         private _platform: Platform,
         protected employeService: EmployeService,
     protected activatedRoute: ActivatedRoute,
+    protected userService:UserService,
     protected router: Router,
    
     )
@@ -150,9 +152,19 @@ export class AppComponent implements OnInit, OnDestroy
             () => {
               this.isLoading = false;
               this.onError();
-            }
+            } 
           );
-      }    
+      }   
+
+      loadUser(){
+        this.userService.query().subscribe(
+          data=>{
+            console.log(data)
+          },err=>{
+            console.log(err)
+          })
+        }
+       
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks
     // -----------------------------------------------------------------------------------------------------
@@ -162,8 +174,9 @@ export class AppComponent implements OnInit, OnDestroy
      */
     ngOnInit(): void
     {
-        this.loadPage()
+      //  this.loadPage()
         // Subscribe to config changes
+      //  this.loadUser()
         this._fuseConfigService.config
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((config) => {
@@ -193,6 +206,7 @@ export class AppComponent implements OnInit, OnDestroy
 
                 this.document.body.classList.add(this.fuseConfig.colorTheme);
             });
+           // this.loadUser()
     }
 
     /**

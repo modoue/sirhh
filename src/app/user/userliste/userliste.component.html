@@ -1,0 +1,49 @@
+<div id="orders" class="page-layout carded fullwidth inner-scroll">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header accent"
+             fxLayout="column" fxLayoutAlign="center center"
+             fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+
+            <!-- APP TITLE -->
+            <div class="logo mb-24 mb-sm-0"
+                 fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="logo-icon s-32 mr-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                    shopping_basket
+                </mat-icon>
+                <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Utilisateurs</span>
+            </div>
+            <!-- / APP TITLE -->
+
+            <div class="search"> 
+          <button mat-fab class="add-event-button mat-accent"  aria-label="Add event"
+            [@animate]="{value:'*',params:{delay:'300ms',scale:'0.2'}}" (click)="newUser()">
+                <mat-icon>add</mat-icon>
+           </button>
+        </div>
+
+
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+
+            <div class="app-liste">
+                    <app-liste [miseajour]=miseajour></app-liste> 
+            </div>
+
+            
+
+        </div>
+        <!-- / CONTENT CARD -->
+    </div>
+    <!-- / CENTER -->
+</div>
